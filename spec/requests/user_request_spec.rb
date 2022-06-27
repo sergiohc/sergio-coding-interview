@@ -24,7 +24,7 @@ RSpec.describe "Users", type: :request do
 
       it 'returns only the users for the specified company' do
         get company_users_path(company_1)
-        
+
         expect(result.size).to eq(company_1.users.size)
         expect(result.map { |element| element['id'] } ).to eq(company_1.users.ids)
       end
@@ -34,7 +34,8 @@ RSpec.describe "Users", type: :request do
       include_context 'with multiple companies'
 
       it 'returns all the users' do
-
+        get users_path
+        expect(result.size).to eq(User.all.size)
       end
     end
   end
